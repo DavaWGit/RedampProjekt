@@ -1,8 +1,9 @@
 import time
 from playwright.sync_api import sync_playwright
 
-# Test load speed of the form site
+# Test if the page takes longer than 5 seconds to load
 def test_performance():
+    # network types
     network_speed = [
         ('3G', {
             'download_rate': 750 * 1024 / 8,
@@ -19,20 +20,21 @@ def test_performance():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
 
-        for net_t, speed in network_speed:
+        for speed in network_speed:
             context = browser.new_context()
-
-            context.route("**/*", lambda route: route.continue_())
+            
+            # set the network conditions
             context.network_conditions = speed
 
             page = context.new_page()
 
+            # calculate the time to load the page
             time_start = time.time()
             page.goto("https://securitycheck-rc.redamp.eu/")
             time_end = time.time()
 
             time_final = time_end - time_start
-            print(f"Time to load page in {net_t} is {time_final:.2f} seconds")
+            assert time_final <= 5.0
             
             context.close()
 
