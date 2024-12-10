@@ -26,3 +26,17 @@ class DefaultPage:
 
     def toggle_darkmode(self):
         self.page.locator("label.css-us5h9s").click()
+
+    def click_first_option(self):
+        self.page.locator("[data-test='company-select-item']").click()
+
+    def click_next_step(self):
+        self.page.get_by_role("button", name="Další krok").click()
+
+    def click_select_country(self):
+        self.page.locator("div.css-1ki54i").click()
+        self.page.locator("p", has_text="Czech republic").click()
+    
+    def click_enter_site(self):
+        self.page.get_by_role("button", name="Navštívit").click()
+    
