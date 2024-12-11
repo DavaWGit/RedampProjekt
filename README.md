@@ -1,5 +1,6 @@
 4 testy na stránku s registračním formulářem <br>
-<h1> Spouštění: </h1>	pytest -n 4 .\tests --html=reports/report.html, pro spuštění všech testů najednou a vygenerování html reportu <br>
+<h1> Spouštění: </h1> V hlavní složce projektu: <br>
+		pytest -n 4 .\tests --html=reports/report.html, pro spuštění všech testů najednou a vygenerování html reportu <br>
 		pytest .\tests\test_[jméno testu].py, spuštění samostatného testu <br>
 <h2>Potřebné pytest pluginy:</h2> html - generování reportů, xdist - spouštění testů paralelně <br> 
 <h2>Hierarchie projektu:</h2> pages - POM, tests - jednotlivé test soubory, reports - vygenerované reporty <br>
